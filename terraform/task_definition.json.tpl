@@ -1,0 +1,32 @@
+[
+   {
+      "essential": true,
+      "name":"flask-app",
+      "image":"${REPOSITORY_URL}",
+      "portMappings":[
+         {
+            "containerPort":5000,
+            "hostPort":5000,
+            "protocol":"tcp"
+         }
+      ],
+      "environment":[
+         {
+            "name":"POSTGRES_USER",
+            "value":"${POSTGRES_USERNAME}"
+         },
+         {
+            "name":"POSTGRES_PASSWORD",
+            "value":"${POSTGRES_PASSWD}"
+         },
+         {
+            "name":"POSTGRES_ENDPOINT",
+            "value":"${POSTGRES_ENDPOINT}"
+         },
+         {
+            "name":"POSTGRES_DATABASE",
+            "value":"${POSTGRES_DATABASE}"
+         }
+      ]
+   }
+]
