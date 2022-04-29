@@ -2,7 +2,7 @@ name: 'Terraform'
 
 on:
   workflow_run:
-    workflows: [Build and push]
+    workflows: [Build]
     types:
       - completed
   push:
