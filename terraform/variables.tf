@@ -22,21 +22,21 @@ variable "rt_wide_route" {
 }
 variable "subnet_count" {
   description = "no of subnets"
-  default = 2
+  default     = 2
 }
 variable "availability_zones" {
   description = "availability zone to create subnet"
   default = [
     "us-east-2a",
-    "us-east-2b"]
+  "us-east-2b"]
 }
 variable "postgres_db_port" {
   description = "Port exposed by the RDS instance"
-  default = 5432
+  default     = 5432
 }
 variable "rds_instance_type" {
   description = "Instance type for the RDS database"
-  default = "db.t2.micro"
+  default     = "db.t2.micro"
 }
 # Change database-1 to postgres
 variable "rds_identifier" {
@@ -78,9 +78,9 @@ variable "rds_final_snapshot_identifier" {
 }
 variable "flask_app_port" {
   description = "Port exposed by the flask application"
-  default = 5000
+  default     = 5000
 }
 variable "flask_app_image" {
   description = "Dockerhub image for flask-app"
-  default = "docker.io/****/terraform-flask-postgres-docker:latest"
+  default     = "docker.io/****/terraform-flask-postgres-docker:latest"
 }

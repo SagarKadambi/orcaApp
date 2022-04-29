@@ -4,7 +4,7 @@ provider "aws" {
 
 # random string for flask secret-key env variable
 resource "random_string" "flask-secret-key" {
-  length = 16
-  special = true
+  length           = 16
+  special          = true
   override_special = "/@\" "
 }
