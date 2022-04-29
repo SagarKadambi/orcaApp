@@ -20,8 +20,8 @@
             "value":"${POSTGRES_PASSWD}"
          },
          {
-            "name":"POSTGRES_ENDPOINT",
-            "value":"${POSTGRES_ENDPOINT}"
+            "name":"DATABASE_URL",
+            "value":"${DATABASE_URL}"
          },
          {
             "name":"POSTGRES_DATABASE",
