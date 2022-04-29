@@ -85,6 +85,6 @@ variable "flask_app_image" {
   default     = "082650174962.dkr.ecr.us-east-2.amazonaws.com/orca_app"
 }
 
-variable orca_app_image_tag {
+variable "orca_app_image_tag" {
   default = "latest"
 }
