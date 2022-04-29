@@ -12,14 +12,15 @@ on:
 permissions:
   contents: read
 
-env :
-  orca_app_image_tag: ${{ github.sha }}
+
 
 jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
     environment: test
+    env :
+      orca_app_image_tag: ${{ github.sha }}
     # if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
