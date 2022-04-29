@@ -4,7 +4,7 @@ locals {
 data "template_file" "task_definition_template" {
   template = file("task_definition.json.tpl")
   vars = {
-    REPOSITORY_URL    = var.flask_app_image
+    REPOSITORY_URL    = local.repository_url
     POSTGRES_USERNAME = aws_db_instance.rds_instance.username
     POSTGRES_PASSWD   = aws_db_instance.rds_instance.password
     POSTGRES_ENDPOINT = aws_db_instance.rds_instance.endpoint
