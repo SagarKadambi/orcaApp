@@ -3,8 +3,7 @@ name: 'Terraform'
 on:
   workflow_run:
     workflows: [Build]
-    types:
-      - completed
+    types: [completed]
   push:
     branches:
     - main
@@ -18,6 +17,7 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
     environment: test
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
