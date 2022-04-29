@@ -84,3 +84,7 @@ variable "flask_app_image" {
   description = "Dockerhub image for flask-app"
   default     = "082650174962.dkr.ecr.us-east-2.amazonaws.com/orca_app"
 }
+
+variable orca_app_image_tag {
+  default = "latest"
+}

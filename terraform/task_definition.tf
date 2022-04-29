@@ -1,5 +1,5 @@
 locals {
-  repository_url = "${var.flask_app_image}:${env.orca_app_image_tag}"
+  repository_url = "${var.flask_app_image}:${var.orca_app_image_tag}"
 }
 data "template_file" "task_definition_template" {
   template = file("task_definition.json.tpl")
