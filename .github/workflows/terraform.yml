@@ -12,6 +12,9 @@ on:
 permissions:
   contents: read
 
+env :
+  orca_app_image_tag: ${{ github.sha }}
+
 jobs:
   terraform:
     name: 'Terraform'

@@ -82,5 +82,5 @@ variable "flask_app_port" {
 }
 variable "flask_app_image" {
   description = "Dockerhub image for flask-app"
-  default     = "082650174962.dkr.ecr.us-east-2.amazonaws.com/orca_app:latest"
+  default     = "082650174962.dkr.ecr.us-east-2.amazonaws.com/orca_app"
 }
