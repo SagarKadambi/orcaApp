@@ -12,10 +12,11 @@ on:
 permissions:
   contents: read
 
-env :
-  orca_app_image_tag: ${{ github.sha }}
+
 
 jobs:
+  env :
+    orca_app_image_tag: ${{ github.sha }}
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
