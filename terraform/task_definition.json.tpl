@@ -27,6 +27,14 @@
             "name":"POSTGRES_DATABASE",
             "value":"${POSTGRES_DATABASE}"
          }
-      ]
+      ],
+      "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+          "awslogs-group" : "${CW_LOG_GROUP}",
+          "awslogs-region": "${AWS_REGION}",
+          "awslogs-stream-prefix": "orcaApp"
+         }
+      }
    }
 ]

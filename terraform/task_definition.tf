@@ -1,6 +1,9 @@
 locals {
   repository_url = "${aws_ecr_repository.orcaApp.repository_url}:${var.orca_app_image_tag}"
 }
+
+data "aws_region" "current" {}
+
 data "template_file" "task_definition_template" {
   template = file("task_definition.json.tpl")
   vars = {
@@ -9,7 +12,8 @@ data "template_file" "task_definition_template" {
     POSTGRES_PASSWD   = aws_db_instance.rds_instance.password
     DATABASE_URL      = aws_db_instance.rds_instance.endpoint
     POSTGRES_DATABASE = aws_db_instance.rds_instance.name
-
+    CW_LOG_GROUP      = aws_cloudwatch_log_group.orcaApp.name
+    AWS_REGION        = data.aws_region.current.name
   }
 }
 

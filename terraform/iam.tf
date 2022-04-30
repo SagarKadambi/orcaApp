@@ -51,24 +51,33 @@ resource "aws_iam_role_policy" "iam_orcaApp_policy" {
             "Resource": ["*"]
         },
         {
-          "Effect": "Allow",
-          "Action": [
-              "ec2:AuthorizeSecurityGroupIngress",
-              "ec2:Describe*",
-              "elasticloadbalancing:DeregisterInstancesFromLoadBalancer",
-              "elasticloadbalancing:DeregisterTargets",
-              "elasticloadbalancing:Describe*",
-              "elasticloadbalancing:RegisterInstancesWithLoadBalancer",
-              "elasticloadbalancing:RegisterTargets"
-          ],
-          "Resource": "*"
+            "Effect": "Allow",
+            "Action": [
+                "ec2:AuthorizeSecurityGroupIngress",
+                "ec2:Describe*",
+                "elasticloadbalancing:DeregisterInstancesFromLoadBalancer",
+                "elasticloadbalancing:DeregisterTargets",
+                "elasticloadbalancing:Describe*",
+                "elasticloadbalancing:RegisterInstancesWithLoadBalancer",
+                "elasticloadbalancing:RegisterTargets"
+            ],
+            "Resource": "*"
         },
         {
-          "Effect": "Allow",
-          "Action": [
-              "secretsmanager:GetSecretValue"
-          ],
-          "Resource": "*"
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:GetSecretValue"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "rds-db:connect"
+            ],
+            "Resource": [
+                "*"
+            ]
         }
     ]
 }
