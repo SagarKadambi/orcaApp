@@ -1,7 +1,7 @@
 [
    {
       "essential": true,
-      "name":"flask-app",
+      "name":"orca-app",
       "image":"${REPOSITORY_URL}",
       "portMappings":[
          {

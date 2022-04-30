@@ -76,15 +76,11 @@ variable "rds_final_snapshot_identifier" {
   description = "db final snapshot identifier"
   default     = "worker-final"
 }
-variable "flask_app_port" {
-  description = "Port exposed by the flask application"
+variable "orca_app_port" {
+  description = "Port exposed by the orca application"
   default     = 5000
-}
-variable "flask_app_image" {
-  description = "Dockerhub image for flask-app"
-  default     = "082650174962.dkr.ecr.us-east-2.amazonaws.com/orca_app"
 }
 
 variable "orca_app_image_tag" {
-  default = "latest"
+  default = "c66b1a8064fe31e66bb626356ca9d39c33cf43c0"
 }

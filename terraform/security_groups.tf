@@ -35,8 +35,8 @@ resource "aws_security_group" "ecs_sg" {
   vpc_id      = aws_vpc.vpc.id
 
   ingress {
-    from_port       = var.flask_app_port
-    to_port         = var.flask_app_port
+    from_port       = var.orca_app_port
+    to_port         = var.orca_app_port
     protocol        = "tcp"
     cidr_blocks     = ["0.0.0.0/0"]
     security_groups = [aws_security_group.alb_sg.id]

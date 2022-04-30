@@ -8,6 +8,6 @@ resource "aws_vpc" "vpc" {
   enable_dns_support   = true
 
   tags = {
-    Name = "flask-docker-vpc"
+    Name = "orca-docker-vpc"
   }
 }

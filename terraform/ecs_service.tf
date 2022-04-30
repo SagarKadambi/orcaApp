@@ -1,6 +1,6 @@
-resource "aws_ecs_service" "flask-service" {
-  name            = "flask-app-service"
-  cluster         = aws_ecs_cluster.fp-ecs-cluster.id
+resource "aws_ecs_service" "orca-service" {
+  name            = "orca-app-service"
+  cluster         = aws_ecs_cluster.orca-ecs-cluster.id
   task_definition = aws_ecs_task_definition.task_definition.arn
   desired_count   = 2
   launch_type     = "FARGATE"
@@ -13,8 +13,8 @@ resource "aws_ecs_service" "flask-service" {
   }
 
   load_balancer {
-    container_name   = "flask-app"
-    container_port   = var.flask_app_port
+    container_name   = "orca-app"
+    container_port   = var.orca_app_port
     target_group_arn = aws_alb_target_group.target_group.id
   }
 

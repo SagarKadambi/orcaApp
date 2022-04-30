@@ -30,6 +30,6 @@ resource "aws_db_instance" "rds_instance" {
   # backup_retention_period = 0
 
   tags = {
-    Name = "flask-postgres-rds"
+    Name = "orca-postgres-rds"
   }
 }

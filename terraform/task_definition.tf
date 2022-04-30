@@ -1,5 +1,5 @@
 locals {
-  repository_url = "${var.flask_app_image}:${var.orca_app_image_tag}"
+  repository_url = "${aws_ecr_repository.orcaApp.repository_url}:${var.orca_app_image_tag}"
 }
 data "template_file" "task_definition_template" {
   template = file("task_definition.json.tpl")
@@ -15,11 +15,13 @@ data "template_file" "task_definition_template" {
 
 # create and define the container task
 resource "aws_ecs_task_definition" "task_definition" {
-  family = "flask-app"
+  family = "orca-app"
   requires_compatibilities = [
   "FARGATE"]
   network_mode          = "awsvpc"
   cpu                   = 256
   memory                = 512
   container_definitions = data.template_file.task_definition_template.rendered
+  execution_role_arn       = aws_iam_role.iam_ecs_role.arn
+  task_role_arn            = aws_iam_role.iam_ecs_role.arn
 }
