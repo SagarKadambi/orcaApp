@@ -9,7 +9,7 @@ resource "aws_alb" "alb" {
 # point redirected traffic to the app
 resource "aws_alb_target_group" "target_group" {
   name        = "ecs-target-group"
-  port        = 80
+  port        = 8080
   protocol    = "HTTP"
   vpc_id      = aws_vpc.vpc.id
   target_type = "ip"
@@ -29,7 +29,7 @@ resource "aws_alb_target_group" "target_group" {
 # direct traffic through the ALB
 resource "aws_alb_listener" "fp-alb-listener" {
   load_balancer_arn = aws_alb.alb.arn
-  port              = 80
+  port              = 8080
   protocol          = "HTTP"
   default_action {
     target_group_arn = aws_alb_target_group.target_group.arn

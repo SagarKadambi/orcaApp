@@ -31,7 +31,7 @@ COPY src/. .
 COPY --from=python-deps .venv /.venv
 RUN chown -R appuser:appuser /home/appuser
 ENV PATH="/.venv/bin:$PATH"
-EXPOSE 80
+EXPOSE 8080
 
 USER appuser
 
