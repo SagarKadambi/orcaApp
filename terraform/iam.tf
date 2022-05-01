@@ -33,7 +33,8 @@ resource "aws_iam_role_policy" "iam_orcaApp_policy" {
                 "logs:PutLogEvents"
             ],
             "Resource": [
-              "${aws_cloudwatch_log_group.orcaApp.arn}"]
+              "*"
+              ]
         },
         {
             "Effect": "Allow",

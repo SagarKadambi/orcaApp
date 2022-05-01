@@ -7,7 +7,6 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONFAULTHANDLER 1
 
 RUN pip install pipenv
-EXPOSE 5000/tcp
 
 FROM base AS python-deps
 
@@ -32,6 +31,7 @@ COPY src/. .
 COPY --from=python-deps .venv /.venv
 RUN chown -R appuser:appuser /home/appuser
 ENV PATH="/.venv/bin:$PATH"
+EXPOSE 80
 
 USER appuser
 

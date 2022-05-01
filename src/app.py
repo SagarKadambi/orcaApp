@@ -52,7 +52,7 @@ def health():
 
 
 def main():
-    app.run()
+    app.run(host='0.0.0.0', debug=True, port=80)
 
 
 if __name__ == "__main__":
