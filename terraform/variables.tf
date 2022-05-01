@@ -78,7 +78,7 @@ variable "rds_final_snapshot_identifier" {
 }
 variable "orca_app_port" {
   description = "Port exposed by the orca application"
-  default     = 5000
+  default     = 80
 }
 
 variable "orca_app_image_tag" {
