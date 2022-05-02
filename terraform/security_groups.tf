@@ -28,18 +28,18 @@ resource "aws_security_group" "ecs_sg" {
   vpc_id      = aws_vpc.vpc.id
 
   ingress {
-    from_port       = var.orca_app_port
-    to_port         = var.orca_app_port
-    protocol        = "tcp"
+    from_port = var.orca_app_port
+    to_port   = var.orca_app_port
+    protocol  = "tcp"
     cidr_blocks = [
     "10.0.0.0/8"]
     security_groups = [aws_security_group.alb_sg.id]
   }
 
   egress {
-    protocol    = "-1"
-    from_port   = 0
-    to_port     = 0
+    protocol  = "-1"
+    from_port = 0
+    to_port   = 0
     cidr_blocks = [
     "0.0.0.0/0"]
   }
@@ -52,9 +52,9 @@ resource "aws_security_group" "rds_sg" {
   vpc_id      = aws_vpc.vpc.id
 
   ingress {
-    protocol        = "tcp"
-    from_port       = var.postgres_db_port
-    to_port         = var.postgres_db_port
+    protocol  = "tcp"
+    from_port = var.postgres_db_port
+    to_port   = var.postgres_db_port
     cidr_blocks = [
     "10.0.0.0/8"]
     security_groups = [aws_security_group.alb_sg.id]

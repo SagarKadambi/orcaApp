@@ -1,5 +1,5 @@
 resource "aws_iam_role" "iam_ecs_role" {
-  name = "iam_ecs_role"
+  name               = "iam_ecs_role"
   assume_role_policy = <<EOF
 {
    "Version": "2012-10-17",
@@ -19,8 +19,8 @@ EOF
 
 
 resource "aws_iam_role_policy" "iam_orcaApp_policy" {
-  name = "iam_orcaApp_policy"
-  role = aws_iam_role.iam_ecs_role.id
+  name   = "iam_orcaApp_policy"
+  role   = aws_iam_role.iam_ecs_role.id
   policy = <<EOF
 {
     "Version": "2012-10-17",

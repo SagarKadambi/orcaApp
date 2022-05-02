@@ -11,7 +11,7 @@ resource "aws_cloudwatch_metric_alarm" "ecs_CPUUtilization" {
   alarm_actions             = [aws_sns_topic.orca-app-topic.arn]
   ok_actions                = [aws_sns_topic.orca-app-topic.arn]
   insufficient_data_actions = []
-  
+
 }
 
 resource "aws_cloudwatch_metric_alarm" "ecs_MemoryUtilization" {
@@ -27,7 +27,7 @@ resource "aws_cloudwatch_metric_alarm" "ecs_MemoryUtilization" {
   alarm_actions             = [aws_sns_topic.orca-app-topic.arn]
   ok_actions                = [aws_sns_topic.orca-app-topic.arn]
   insufficient_data_actions = []
-  
+
 }
 
 resource "aws_cloudwatch_metric_alarm" "loadbalancer_UnHealthyHostCount" {
@@ -43,7 +43,7 @@ resource "aws_cloudwatch_metric_alarm" "loadbalancer_UnHealthyHostCount" {
   alarm_actions             = [aws_sns_topic.orca-app-topic.arn]
   ok_actions                = [aws_sns_topic.orca-app-topic.arn]
   insufficient_data_actions = []
-  
+
 }
 
 resource "aws_cloudwatch_metric_alarm" "loadbalancer_ClientTLSNegotiationErrorCount" {
@@ -59,7 +59,7 @@ resource "aws_cloudwatch_metric_alarm" "loadbalancer_ClientTLSNegotiationErrorCo
   alarm_actions             = [aws_sns_topic.orca-app-topic.arn]
   ok_actions                = [aws_sns_topic.orca-app-topic.arn]
   insufficient_data_actions = []
-  
+
 }
 
 resource "aws_cloudwatch_metric_alarm" "loadbalancer_TargetTLSNegotiationErrorCount" {
@@ -75,7 +75,7 @@ resource "aws_cloudwatch_metric_alarm" "loadbalancer_TargetTLSNegotiationErrorCo
   alarm_actions             = [aws_sns_topic.orca-app-topic.arn]
   ok_actions                = [aws_sns_topic.orca-app-topic.arn]
   insufficient_data_actions = []
-  
+
 }
 
 

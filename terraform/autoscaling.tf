@@ -32,15 +32,15 @@ data "aws_iam_policy_document" "ecs_service_scaling" {
 }
 
 resource "aws_iam_policy" "ecs_service_scaling" {
-  name = "orcaapp_ecs_scaling"
-  path = "/"
+  name        = "orcaapp_ecs_scaling"
+  path        = "/"
   description = "Allow ecs service scaling"
 
   policy = data.aws_iam_policy_document.ecs_service_scaling.json
 }
 
 resource "aws_iam_role_policy_attachment" "ecs_service_scaling" {
-  role = aws_iam_role.iam_ecs_role.name
+  role       = aws_iam_role.iam_ecs_role.name
   policy_arn = aws_iam_policy.ecs_service_scaling.arn
 }
 
@@ -48,11 +48,11 @@ resource "aws_iam_role_policy_attachment" "ecs_service_scaling" {
 # Autoscaling based on CPU and Memory consumption
 
 resource "aws_appautoscaling_target" "dev_to_target" {
-  max_capacity = 5
-  min_capacity = 2
-  resource_id = "service/${aws_ecs_cluster.orca-ecs-cluster.name}/${aws_ecs_service.orca-service.name}"
+  max_capacity       = 5
+  min_capacity       = 2
+  resource_id        = "service/${aws_ecs_cluster.orca-ecs-cluster.name}/${aws_ecs_service.orca-service.name}"
   scalable_dimension = "ecs:service:DesiredCount"
-  service_namespace = "ecs"
+  service_namespace  = "ecs"
 }
 
 resource "aws_appautoscaling_policy" "dev_to_memory" {
@@ -67,16 +67,16 @@ resource "aws_appautoscaling_policy" "dev_to_memory" {
       predefined_metric_type = "ECSServiceAverageMemoryUtilization"
     }
 
-    target_value       = 80
+    target_value = 80
   }
 }
 
 resource "aws_appautoscaling_policy" "dev_to_cpu" {
-  name = "dev-to-cpu"
-  policy_type = "TargetTrackingScaling"
-  resource_id = aws_appautoscaling_target.dev_to_target.resource_id
+  name               = "dev-to-cpu"
+  policy_type        = "TargetTrackingScaling"
+  resource_id        = aws_appautoscaling_target.dev_to_target.resource_id
   scalable_dimension = aws_appautoscaling_target.dev_to_target.scalable_dimension
-  service_namespace = aws_appautoscaling_target.dev_to_target.service_namespace
+  service_namespace  = aws_appautoscaling_target.dev_to_target.service_namespace
 
   target_tracking_scaling_policy_configuration {
     predefined_metric_specification {
@@ -90,20 +90,20 @@ resource "aws_appautoscaling_policy" "dev_to_cpu" {
 #Autoscaling based on request count on the ALB
 
 locals {
-    alb_name = split("/",aws_alb.alb.id)
-    alb_target_group_name = split("/",aws_alb_target_group.target_group.id)
+  alb_name              = split("/", aws_alb.alb.id)
+  alb_target_group_name = split("/", aws_alb_target_group.target_group.id)
 }
 resource "aws_appautoscaling_policy" "dev_to_request_count" {
-  name = "dev_to_request_count"
-  policy_type = "TargetTrackingScaling"
-  resource_id = aws_appautoscaling_target.dev_to_target.resource_id
+  name               = "dev_to_request_count"
+  policy_type        = "TargetTrackingScaling"
+  resource_id        = aws_appautoscaling_target.dev_to_target.resource_id
   scalable_dimension = aws_appautoscaling_target.dev_to_target.scalable_dimension
-  service_namespace = aws_appautoscaling_target.dev_to_target.service_namespace
+  service_namespace  = aws_appautoscaling_target.dev_to_target.service_namespace
 
   target_tracking_scaling_policy_configuration {
     predefined_metric_specification {
       predefined_metric_type = "ALBRequestCountPerTarget"
-      resource_label = "app/${local.alb_name[2]}/${local.alb_name[3]}/targetgroup/${local.alb_target_group_name[1]}/${local.alb_target_group_name[2]}"
+      resource_label         = "app/${local.alb_name[2]}/${local.alb_name[3]}/targetgroup/${local.alb_target_group_name[1]}/${local.alb_target_group_name[2]}"
     }
 
     target_value = 10

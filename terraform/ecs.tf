@@ -8,7 +8,7 @@ resource "aws_ecr_repository" "orcaApp" {
 resource "aws_ecs_cluster" "orca-ecs-cluster" {
   name = "orca-app"
   setting {
-    name = "containerInsights"
+    name  = "containerInsights"
     value = "enabled"
   }
 

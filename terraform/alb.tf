@@ -14,14 +14,14 @@ resource "aws_alb_target_group" "target_group" {
   vpc_id      = aws_vpc.vpc.id
   target_type = "ip"
   health_check {
-      enabled             = true
-      healthy_threshold   = 2
-      interval            = 180
-      path                = "/_healthz"
-      port                = "traffic-port"
-      protocol            = "HTTP"
-      timeout             = 120
-      unhealthy_threshold = 2
+    enabled             = true
+    healthy_threshold   = 2
+    interval            = 180
+    path                = "/_healthz"
+    port                = "traffic-port"
+    protocol            = "HTTP"
+    timeout             = 120
+    unhealthy_threshold = 2
   }
 
 }
