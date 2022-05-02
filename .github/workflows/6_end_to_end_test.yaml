@@ -1,0 +1,32 @@
+name: 'End_to_end_prod'
+
+on:
+  workflow_run:
+    workflows: [Terraform_deploy_prod]
+    types: [completed]
+  push:
+    branches:
+      - main 
+
+permissions:
+  contents: read
+
+jobs:
+  end_to_end_prod:
+    name: 'End_to_end_prod'
+    runs-on: ubuntu-latest
+    environment: prod
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: End to end test
+      run: echo "Run End to end Tests on prod env."

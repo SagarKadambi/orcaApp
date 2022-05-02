@@ -1,0 +1,33 @@
+name: 'Static_Analysis_security_scan'
+
+on:
+  workflow_run:
+    workflows: [Build]
+    types: [completed]
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  static_analysis_security_scan:
+    name: 'Static_Analysis_security_scan'
+    runs-on: ubuntu-latest
+    environment: test
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: Static Analysis and Security Scan
+      run: echo "Run Static Analysis and Security Scans on the image."
