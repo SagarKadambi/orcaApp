@@ -67,13 +67,6 @@ resource "aws_iam_role_policy" "iam_orcaApp_policy" {
         {
             "Effect": "Allow",
             "Action": [
-                "secretsmanager:GetSecretValue"
-            ],
-            "Resource": "*"
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
                 "rds-db:connect"
             ],
             "Resource": [

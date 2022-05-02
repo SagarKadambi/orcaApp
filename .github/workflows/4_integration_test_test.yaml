@@ -1,0 +1,33 @@
+name: 'Integration_Test'
+
+on:
+  workflow_run:
+    workflows: [Terraform_deploy_test]
+    types: [completed]
+  push:
+    branches:
+      - main 
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  integration_test:
+    name: 'Integration_Test'
+    runs-on: ubuntu-latest
+    environment: test
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: Integration Tests
+      run: echo "Run Integration Tests for test env."

@@ -82,5 +82,5 @@ variable "orca_app_port" {
 }
 
 variable "orca_app_image_tag" {
-  default = "2b5ee9700a2fd4783ea0147baf27da859b57b7f3"
+  default = "3da24a7e724d4938c7fdb5fa6d8f15534a7abfca"
 }

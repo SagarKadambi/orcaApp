@@ -1,0 +1,33 @@
+name: 'Static_Analysis'
+
+on:
+  workflow_run:
+    workflows: [Build]
+    types: [completed]
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  static_analysis:
+    name: 'Static_Analysis'
+    runs-on: ubuntu-latest
+    environment: test
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: Static Analysis
+      run: echo "Run Static Analysis for test env."

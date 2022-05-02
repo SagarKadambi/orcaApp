@@ -1,10 +1,3 @@
-# create security group
-resource "aws_security_group" "public-sg" {
-  name        = "public-group-default"
-  description = "access to public instances"
-  vpc_id      = aws_vpc.vpc.id
-}
-
 # create security group for ALB
 resource "aws_security_group" "alb_sg" {
   name        = "alb-group"
@@ -12,8 +5,8 @@ resource "aws_security_group" "alb_sg" {
   vpc_id      = aws_vpc.vpc.id
 
   ingress {
-    from_port = 8080
-    to_port   = 8080
+    from_port = var.orca_app_port
+    to_port   = var.orca_app_port
     protocol  = "tcp"
     cidr_blocks = [
     "0.0.0.0/0"]
@@ -38,7 +31,8 @@ resource "aws_security_group" "ecs_sg" {
     from_port       = var.orca_app_port
     to_port         = var.orca_app_port
     protocol        = "tcp"
-    cidr_blocks     = ["0.0.0.0/0"]
+    cidr_blocks = [
+    "10.0.0.0/8"]
     security_groups = [aws_security_group.alb_sg.id]
   }
 
@@ -46,7 +40,8 @@ resource "aws_security_group" "ecs_sg" {
     protocol    = "-1"
     from_port   = 0
     to_port     = 0
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [
+    "0.0.0.0/0"]
   }
 }
 
@@ -60,7 +55,8 @@ resource "aws_security_group" "rds_sg" {
     protocol        = "tcp"
     from_port       = var.postgres_db_port
     to_port         = var.postgres_db_port
-    cidr_blocks     = ["0.0.0.0/0"]
+    cidr_blocks = [
+    "10.0.0.0/8"]
     security_groups = [aws_security_group.alb_sg.id]
   }
 
