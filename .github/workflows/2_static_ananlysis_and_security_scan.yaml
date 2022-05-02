@@ -1,4 +1,4 @@
-name: 'Static_Analysis'
+name: 'Static_Analysis_security_scan'
 
 on:
   workflow_run:
@@ -13,8 +13,8 @@ permissions:
   contents: read
 
 jobs:
-  static_analysis:
-    name: 'Static_Analysis'
+  static_analysis_security_scan:
+    name: 'Static_Analysis_security_scan'
     runs-on: ubuntu-latest
     environment: test
 
@@ -29,5 +29,5 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
       
-    - name: Static Analysis
-      run: echo "Run Static Analysis for test env."
+    - name: Static Analysis and Security Scan
+      run: echo "Run Static Analysis and Security Scans on the image."
